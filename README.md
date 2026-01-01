@@ -1,73 +1,45 @@
-# React + TypeScript + Vite
+# 9n Excel Letter Validation
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Excel 儲存格驗證工具，用於比對兩個 Excel 檔案的內容。
 
-Currently, two official plugins are available:
+## 用途
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+驗證 Reference 檔案中的所有儲存格值是否都存在於 Source 檔案中。
 
-## React Compiler
+- **Source 檔案**：包含所有合法/正確的值
+- **Reference 檔案**：需要被驗證的檔案
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+如果 Reference 中有任何值不存在於 Source 中，這些無效的值會被列出並以 a-z 順序排列顯示。
 
-## Expanding the ESLint configuration
+## 使用情境
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- 驗證翻譯檔案中的用詞是否符合術語表
+- 檢查資料匯入前的值是否在允許清單中
+- 比對兩份清單找出差異項目
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 安裝
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 開發
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run dev
 ```
+
+## 建置
+
+```bash
+npm run build
+```
+
+## 使用方式
+
+1. 上傳 Source 檔案（包含所有合法值的 Excel）
+2. 上傳 Reference 檔案（需要驗證的 Excel）
+3. 點擊 Compare 按鈕
+4. 查看驗證結果：
+   - 綠色訊息：所有值都合法
+   - 紅色訊息：顯示不在 Source 中的無效值
