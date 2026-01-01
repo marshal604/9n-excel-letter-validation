@@ -2,6 +2,8 @@
 
 Excel 儲存格驗證工具，用於比對兩個 Excel 檔案的內容。
 
+**Demo**: https://marshal604.github.io/9n-excel-letter-validation/
+
 ## 用途
 
 驗證 Reference 檔案中的所有儲存格值是否都存在於 Source 檔案中。
